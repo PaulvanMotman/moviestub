@@ -1,0 +1,14 @@
+{
+  "name": "moviestub",
+  "description": "Book movie tickets online",
+  "main": "app.js",
+  "authors": [
+    "Paul"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/PaulvanMotman/moviestub",
+  "devDependencies": {
+    "angular": "^1.5.8",
+    "bootstrap": "^3.3.7"
+  }
+}

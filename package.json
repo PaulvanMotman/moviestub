@@ -1,0 +1,22 @@
+{
+  "name": "moviestub",
+  "version": "1.0.0",
+  "description": "Book movie tickets online",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaulvanMotman/moviestub.git"
+  },
+  "author": "Paul",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PaulvanMotman/moviestub/issues"
+  },
+  "homepage": "https://github.com/PaulvanMotman/moviestub#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
