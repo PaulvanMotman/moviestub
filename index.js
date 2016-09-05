@@ -1,15 +1,19 @@
 var express = require("express"),
     fs = require('fs'),
     port = process.env.PORT || 2595;
+
+var bodyParser = require('body-parser');
+var morgan = require('morgan');
  
 var app = express();
-app.use(express.logger());
-app.use(express.json());
-app.use(express.urlencoded());
+
+app.use(morgan('combined'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 app.set("view options", {
     layout: false
 });
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('./public'));
  
 app.get('/', function (req, res) {
     res.render('public/index.html');
