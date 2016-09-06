@@ -6,6 +6,9 @@ movieStubApp.config(function ($routeProvider) {
         }).when('/movie/:id', {
             templateUrl: 'template/movie.html',
             controller: 'movieDetailsController'
+        }).when('/bookTickets/:id', {
+            templateUrl: 'template/bookTickets.html',
+            controller: 'bookTicketsController'
         }).otherwise({
             redirectTo: '/'
         });
