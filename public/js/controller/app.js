@@ -1,31 +1,43 @@
-window.movieStubApp = angular.module('movieStubApp', ['ngRoute', 'ngResource']);
+window.movieStubApp = angular.module('movieStubApp', ['ngResource', 'ngRoute']);
  
-movieStubApp.controller("movieStubController", function ($scope, movieStubFactory) {
+movieStubApp.controller("movieStubController", function ($scope, movieStubFactory, $location) {
     $scope.headerSrc = "template/header.html";
+ 
     $scope.movies = movieStubFactory.query();
  
     $scope.currMovie = null;
+ 
     $scope.getMovieById = function (id) {
         var movies = $scope.movies;
         for (var i = 0; i < movies.length; i++) {
-            if (movies[i].id == id) {
-                $scope.currMovie = movies[i];
+            var movie = $scope.movies[i];
+            if (movie.id == id) {
+                $scope.currMovie = movie;
             }
         }
     };
-    // A simple back function, that will help us navigate between views
+ 
     $scope.back = function () {
         window.history.back();
     };
+ 
     $scope.getCount = function (n) {
         return new Array(n);
     };
+ 
+    $scope.isActive = function (route) {
+        return route === $location.path();
+    }
+ 
+    $scope.isActivePath = function (route) {
+        return ($location.path()).indexOf(route) >= 0;
+    }
+ 
 });
-
+ 
 movieStubApp.controller("movieDetailsController", function ($scope, $routeParams) {
     $scope.getMovieById($routeParams.id);
 });
-
 movieStubApp.controller("bookTicketsController", function ($scope, $http, $location, $routeParams) {
     $scope.getMovieById($routeParams.id);
     $scope.onlyNumbers = /^\d+$/;
@@ -35,6 +47,7 @@ movieStubApp.controller("bookTicketsController", function ($scope, $http, $locat
     $scope.formData.date = "Today"
  
     $scope.processForm = function () {
+        console.log($scope.formData);
         $http({
             method: 'POST',
             url: '/book',
@@ -44,7 +57,10 @@ movieStubApp.controller("bookTicketsController", function ($scope, $http, $locat
             } // set the headers so angular passing info as form data (not request payload)
         })
             .success(function (data) {
-                console.log(data);
+                $location.path("/bookings");
             });
     };
+});
+movieStubApp.controller("bookingDetailsController", function ($scope, movieStubBookingsFactory) {
+    $scope.bookings = movieStubBookingsFactory.query();
 });

@@ -23,7 +23,11 @@ app.get('/movies', function (req, res) {
     var movies = require('./data/movies.json');
     res.json(movies);
 });
-
+ 
+app.get('/bookings', function (req, res) {
+    res.json(bookings);
+});
+ 
 app.post('/book', function (req, res) {
     var data = {
         'qty': req.body.qty,
@@ -32,7 +36,7 @@ app.post('/book', function (req, res) {
         'name': req.body.movie_name
     };
     bookings.push(data);
-    // res.render('public/template/bookings.html');
+    // res.render('public/tmpl/bookings.html');
     res.json(bookings);
 });
  
